@@ -10,6 +10,7 @@ import com.weiweizhang.latte_core.net.callback.RequestCallbacks;
 import com.weiweizhang.latte_core.ui.loader.LatteLoader;
 import com.weiweizhang.latte_core.ui.loader.LoaderStyle;
 
+import java.io.File;
 import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
@@ -28,6 +29,7 @@ public class RestClient {
     private final RequestBody BODY;
     private final LoaderStyle LOADER_STYLE;
     private final Context CONTEXT;
+    private final File FILE;
 
     public RestClient(String URL,
                       WeakHashMap<String, Object> params,
@@ -37,7 +39,8 @@ public class RestClient {
                       IError error,
                       RequestBody body,
                       LoaderStyle loaderStyle,
-                      Context context
+                      Context context,
+                      File file
     ) {
         this.PARAMS.putAll(params);
         this.URL = URL;
@@ -48,6 +51,7 @@ public class RestClient {
         this.BODY = body;
         this.LOADER_STYLE = loaderStyle;
         this.CONTEXT = context;
+        this.FILE = file;
     }
 
     public static RestClientBuilder builder() {
@@ -85,13 +89,13 @@ public class RestClient {
             case DELETE:
                 call = service.delete(URL, PARAMS);
                 break;
-//            case UPLOAD:
-//                final RequestBody requestBody =
-//                        RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
-//                final MultipartBody.Part body =
-//                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
-//                call = service.upload(URL, body);
-//                break;
+            case UPLOAD:
+                final RequestBody requestBody =
+                        RequestBody.create(MediaType.parse(MultipartBody.FORM.toString()), FILE);
+                final MultipartBody.Part body =
+                        MultipartBody.Part.createFormData("file", FILE.getName(), requestBody);
+                call = service.upload(URL, body);
+                break;
             default:
                 break;
         }
@@ -139,5 +143,9 @@ public class RestClient {
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
     }
 }

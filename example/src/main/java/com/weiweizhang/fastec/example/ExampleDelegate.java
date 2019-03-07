@@ -26,7 +26,8 @@ public class ExampleDelegate extends LatteDelegate {
     }
 
     private void testRestClient() {
-        RestClient.builder().url("http://www.baidu.com")
+        RestClient.builder().url("accesstoken")
+                .params("accesstoken", "f8aa237b-5d1f-4a31-ac54-658dbf25ef09")
                 .loader(getContext())
                 .success(new ISuccess() {
                     @Override
@@ -48,6 +49,6 @@ public class ExampleDelegate extends LatteDelegate {
                     }
                 })
                 .build()
-                .get();
+                .post();
     }
 }
