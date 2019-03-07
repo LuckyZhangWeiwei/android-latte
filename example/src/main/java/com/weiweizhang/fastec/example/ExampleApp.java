@@ -10,6 +10,7 @@ public class ExampleApp extends Application {
         super.onCreate();
         Latte.init(this)
                 .withIcon(new FontAwesomeModule())
+                .withLoaderDelayed(2000)
                 .withApiHost("http://10.0.2.2:8055/")
                 .configure();
     }

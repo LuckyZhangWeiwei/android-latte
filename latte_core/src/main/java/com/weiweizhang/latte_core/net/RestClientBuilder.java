@@ -1,9 +1,12 @@
 package com.weiweizhang.latte_core.net;
 
+import android.content.Context;
+
 import com.weiweizhang.latte_core.net.callback.IError;
 import com.weiweizhang.latte_core.net.callback.IFailure;
 import com.weiweizhang.latte_core.net.callback.IRequest;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
+import com.weiweizhang.latte_core.ui.loader.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -12,13 +15,15 @@ import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 public final class RestClientBuilder {
-    private WeakHashMap<String, Object> mParams = RestCreator.getPrams();
+    private WeakHashMap<String, Object> mParams = RestCreator.getParams();
     private String mUrl = null;
     private IRequest mRequest = null;
     private ISuccess mSuccess = null;
     private IFailure mFailure = null;
     private IError mError = null;
     private RequestBody mBody = null;
+    private Context mContext = null;
+    private LoaderStyle mLoaderStyle = null;
 
     RestClientBuilder() {
     }
@@ -63,7 +68,19 @@ public final class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder loader(Context context, LoaderStyle loaderStyle) {
+        this.mContext = context;
+        this.mLoaderStyle = loaderStyle;
+        return this;
+    }
+
+    public final RestClientBuilder loader(Context context) {
+        this.mContext = context;
+        this.mLoaderStyle = LoaderStyle.BallClipRotatePulseIndicator;
+        return this;
+    }
+
     public final RestClient build() {
-        return new RestClient(mUrl, mParams, mRequest, mSuccess, mFailure, mError, mBody);
+        return new RestClient(mUrl, mParams, mRequest, mSuccess, mFailure, mError, mBody, mLoaderStyle, mContext);
     }
 }

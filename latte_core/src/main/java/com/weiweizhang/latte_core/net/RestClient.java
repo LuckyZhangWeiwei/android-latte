@@ -7,6 +7,8 @@ import com.weiweizhang.latte_core.net.callback.IFailure;
 import com.weiweizhang.latte_core.net.callback.IRequest;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
 import com.weiweizhang.latte_core.net.callback.RequestCallbacks;
+import com.weiweizhang.latte_core.ui.loader.LatteLoader;
+import com.weiweizhang.latte_core.ui.loader.LoaderStyle;
 
 import java.util.WeakHashMap;
 
@@ -17,15 +19,26 @@ import retrofit2.Call;
 import retrofit2.Callback;
 
 public class RestClient {
-    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getPrams();
+    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final String URL;
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
-    public RestClient(String URL, WeakHashMap<String, Object> params,  IRequest request, ISuccess success, IFailure failure, IError error, RequestBody body) {
+    public RestClient(String URL,
+                      WeakHashMap<String, Object> params,
+                      IRequest request,
+                      ISuccess success,
+                      IFailure failure,
+                      IError error,
+                      RequestBody body,
+                      LoaderStyle loaderStyle,
+                      Context context
+    ) {
         this.PARAMS.putAll(params);
         this.URL = URL;
         this.REQUEST = request;
@@ -33,6 +46,8 @@ public class RestClient {
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
+        this.LOADER_STYLE = loaderStyle;
+        this.CONTEXT = context;
     }
 
     public static RestClientBuilder builder() {
@@ -47,9 +62,9 @@ public class RestClient {
             REQUEST.onRequestStart();
         }
 
-//        if (LOADER_STYLE != null) {
-//            LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
-//        }
+        if (LOADER_STYLE != null) {
+            LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
+        }
 
         switch (method) {
             case GET:
@@ -91,8 +106,8 @@ public class RestClient {
                 REQUEST,
                 SUCCESS,
                 FAILURE,
-                ERROR
-                /*,LOADER_STYLE*/
+                ERROR,
+                LOADER_STYLE
         );
     }
 

@@ -26,27 +26,28 @@ public class ExampleDelegate extends LatteDelegate {
     }
 
     private void testRestClient() {
-        RestClient.builder().url("index_data.json")
-        .success(new ISuccess() {
-            @Override
-            public void onSuccess(String response) {
-                Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
-            }
-        })
-        .failure(new IFailure() {
-            @Override
-            public void onFailure(String Message) {
-                Log.d("XXXX", Message);
-                Toast.makeText(getContext(), "onFailure:"+Message, Toast.LENGTH_LONG).show();
-            }
-        })
-        .error(new IError() {
-            @Override
-            public void onError(int code, String msg) {
-                Toast.makeText(getContext(), code+""+"_"+msg, Toast.LENGTH_LONG).show();
-            }
-        })
-        .build()
-        .get();
+        RestClient.builder().url("http://www.baidu.com")
+                .loader(getContext())
+                .success(new ISuccess() {
+                    @Override
+                    public void onSuccess(String response) {
+                        Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .failure(new IFailure() {
+                    @Override
+                    public void onFailure(String Message) {
+                        Log.d("XXXX", Message);
+                        Toast.makeText(getContext(), "onFailure:"+Message, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .error(new IError() {
+                    @Override
+                    public void onError(int code, String msg) {
+                        Toast.makeText(getContext(), code+""+"_"+msg, Toast.LENGTH_LONG).show();
+                    }
+                })
+                .build()
+                .get();
     }
 }

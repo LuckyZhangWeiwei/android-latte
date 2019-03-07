@@ -17,7 +17,7 @@ public class RestCreator {
         public static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 
-    public static WeakHashMap<String, Object> getPrams(){
+    public static WeakHashMap<String, Object> getParams(){
         return ParamsHolder.PARAMS;
     }
 

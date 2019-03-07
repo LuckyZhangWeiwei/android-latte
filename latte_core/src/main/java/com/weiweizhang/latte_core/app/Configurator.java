@@ -1,5 +1,7 @@
 package com.weiweizhang.latte_core.app;
 
+import android.os.Handler;
+
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
@@ -9,10 +11,14 @@ import java.util.HashMap;
 public class Configurator {
     private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
 
+    private static final Handler HANDLER = new Handler();
+
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     private Configurator() {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+
+        LATTE_CONFIGS.put(ConfigType.HANDLER.name(), HANDLER);
     }
 
     public static Configurator getInstance() {
@@ -56,6 +62,11 @@ public class Configurator {
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready,call configure");
         }
+    }
+
+    public final Configurator withLoaderDelayed(long delayed) {
+        LATTE_CONFIGS.put(ConfigType.LOADER_DELAYED.name(), delayed);
+        return this;
     }
 
     @SuppressWarnings("unchecked")
