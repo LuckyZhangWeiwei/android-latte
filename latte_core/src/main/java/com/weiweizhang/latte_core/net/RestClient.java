@@ -7,6 +7,7 @@ import com.weiweizhang.latte_core.net.callback.IFailure;
 import com.weiweizhang.latte_core.net.callback.IRequest;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
 import com.weiweizhang.latte_core.net.callback.RequestCallbacks;
+import com.weiweizhang.latte_core.net.download.DownloadHandler;
 import com.weiweizhang.latte_core.ui.loader.LatteLoader;
 import com.weiweizhang.latte_core.ui.loader.LoaderStyle;
 
@@ -23,6 +24,9 @@ public class RestClient {
     private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final String URL;
     private final IRequest REQUEST;
+    private final String DOWNLOAD_DIR;
+    private final String EXTENSION;
+    private final String NAME;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
@@ -34,6 +38,9 @@ public class RestClient {
     public RestClient(String URL,
                       WeakHashMap<String, Object> params,
                       IRequest request,
+                      String download_dir,
+                      String extension,
+                      String name,
                       ISuccess success,
                       IFailure failure,
                       IError error,
@@ -46,6 +53,9 @@ public class RestClient {
         this.URL = URL;
         this.REQUEST = request;
         this.SUCCESS = success;
+        this.DOWNLOAD_DIR = download_dir;
+        this.EXTENSION = extension;
+        this.NAME = name;
         this.FAILURE = failure;
         this.ERROR = error;
         this.BODY = body;
@@ -147,5 +157,9 @@ public class RestClient {
 
     public final void upload() {
         request(HttpMethod.UPLOAD);
+    }
+
+    public final void download() {
+        new DownloadHandler(URL, REQUEST, DOWNLOAD_DIR, EXTENSION, NAME, SUCCESS, FAILURE, ERROR).handleDownload();
     }
 }

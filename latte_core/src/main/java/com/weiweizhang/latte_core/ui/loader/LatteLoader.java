@@ -7,12 +7,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.wang.avi.AVLoadingIndicatorView;
-import com.wang.avi.Indicator;
 import com.weiweizhang.latte_core.R;
-import com.weiweizhang.latte_core.util.DimenUtil;
+import com.weiweizhang.latte_core.util.dimen.DimenUtil;
 
 import java.util.ArrayList;
-import java.util.WeakHashMap;
 
 public class LatteLoader {
 
