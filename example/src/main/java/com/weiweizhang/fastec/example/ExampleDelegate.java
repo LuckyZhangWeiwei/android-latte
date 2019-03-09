@@ -28,7 +28,7 @@ public class ExampleDelegate extends LatteDelegate {
     private void testRestClient() {
         RestClient.builder()
 //                .url("accesstoken")
-                .url("http://gyxz.ukdj3d.cn/yq1/rj_chf1/chaojidai.apk")
+                .url("http://127.0.0.1/index")
                 .params("accesstoken", "f8aa237b-5d1f-4a31-ac54-658dbf25ef09")
                 .loader(getContext())
                 .success(new ISuccess() {
@@ -52,6 +52,7 @@ public class ExampleDelegate extends LatteDelegate {
                 })
                 .build()
                 //.post();
-                .download();
+                //.download();
+                .get();
     }
 }

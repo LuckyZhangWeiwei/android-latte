@@ -2,7 +2,7 @@ package com.weiweizhang.latte_core.net.callback;
 
 import android.os.Handler;
 
-import com.weiweizhang.latte_core.app.ConfigType;
+import com.weiweizhang.latte_core.app.ConfigKeys;
 import com.weiweizhang.latte_core.app.Latte;
 import com.weiweizhang.latte_core.net.RestCreator;
 import com.weiweizhang.latte_core.ui.loader.LatteLoader;
@@ -59,7 +59,7 @@ public final class RequestCallbacks implements Callback<String> {
     }
 
     private void onRequestFinish() {
-        final long delayed = Latte.getConfiguration(ConfigType.LOADER_DELAYED.name());
+        final long delayed = Latte.getConfiguration(ConfigKeys.LOADER_DELAYED.name());
         if (LOADER_STYLE != null) {
             HANDLER.postDelayed(new Runnable() {
                 @Override
