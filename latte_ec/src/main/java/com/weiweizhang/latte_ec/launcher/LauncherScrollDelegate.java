@@ -22,11 +22,14 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
 //    private ILauncherListener mILauncherListener = null;
 
     private void initBanner() {
-        INTEGERS.add(R.mipmap.launcher_01);
-        INTEGERS.add(R.mipmap.launcher_02);
-        INTEGERS.add(R.mipmap.launcher_03);
-        INTEGERS.add(R.mipmap.launcher_04);
-        INTEGERS.add(R.mipmap.launcher_05);
+        if(INTEGERS.isEmpty()) {
+            INTEGERS.add(R.mipmap.launcher_01);
+            INTEGERS.add(R.mipmap.launcher_02);
+            INTEGERS.add(R.mipmap.launcher_03);
+            INTEGERS.add(R.mipmap.launcher_04);
+            INTEGERS.add(R.mipmap.launcher_05);
+        }
+
         mConvenientBanner
                 .setPages(new LauncherHolderCreator(), INTEGERS)
                 .setPageIndicator(new int[]{R.drawable.dot_normal, R.drawable.dot_focus})
@@ -51,5 +54,11 @@ public class LauncherScrollDelegate extends LatteDelegate implements OnItemClick
         if(position == INTEGERS.size()-1){
             LattePreference.setAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name(), true);
         }
+    }
+
+    @Override
+    public boolean onBackPressedSupport() {
+        this.getActivity().finish();
+        return true;
     }
 }

@@ -8,6 +8,8 @@ import com.weiweizhang.latte_core.activites.ProxyActivity;
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
 import com.weiweizhang.latte_ec.launcher.LauncherDelegate;
 import com.weiweizhang.latte_ec.launcher.LauncherScrollDelegate;
+import com.weiweizhang.latte_ec.sign.SignUpDelegate;
+import com.weiweizhang.latte_ec.sign.SigninDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
@@ -23,7 +25,9 @@ public class ExampleActivity extends ProxyActivity {
     @Override
     public LatteDelegate setRootDelegate() {
 //        return new ExampleDelegate();
-        return new LauncherDelegate();
+//        return new LauncherDelegate();
 //        return new LauncherScrollDelegate();
+//        return new SignUpDelegate();
+        return new SigninDelegate();
     }
 }
