@@ -7,6 +7,8 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
+import com.weiweizhang.latte_core.ui.launcher.ScrollLauncherTag;
+import com.weiweizhang.latte_core.util.storage.LattePreference;
 import com.weiweizhang.latte_core.util.timer.BaseTimerTask;
 import com.weiweizhang.latte_core.util.timer.ITimerListener;
 import com.weiweizhang.latte_ec.R;
@@ -29,7 +31,11 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     @OnClick(R2.id.tv_launcher_timer)
     void onClickTimerView(){
-
+        if (mTimer != null) {
+            mTimer.cancel();
+            mTimer = null;
+            checkIsShowScroll();
+        }
     }
 
     private void initTimer() {
@@ -49,6 +55,14 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
         initTimer();
     }
 
+    private void checkIsShowScroll() {
+        if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
+            start(new LauncherScrollDelegate(), SINGLETASK);
+        } else {
+            //检查用户是否登录APP
+        }
+    }
+
     @Override
     public void onTimer() {
         getProxyActivity().runOnUiThread(new Runnable() {
@@ -61,7 +75,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
                         if (mTimer != null) {
                             mTimer.cancel();
                             mTimer = null;
-//                            checkIsShowScroll();
+                            checkIsShowScroll();
                         }
                     }
                 }
