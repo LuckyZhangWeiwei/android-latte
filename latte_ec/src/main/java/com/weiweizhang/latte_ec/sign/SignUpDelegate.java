@@ -9,7 +9,10 @@ import android.view.View;
 
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
 import com.weiweizhang.latte_core.net.RestClient;
+import com.weiweizhang.latte_core.net.callback.IError;
+import com.weiweizhang.latte_core.net.callback.IFailure;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
+import com.weiweizhang.latte_core.util.log.LatteLogger;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 
@@ -32,7 +35,7 @@ public class SignUpDelegate extends LatteDelegate {
     void onClickSignUp() {
         if(checkForm()) {
             RestClient.builder()
-            .url("")
+            .url("user_profile.json")
             .params("name", mName.getText().toString())
             .params("email", mEmail.getText().toString())
             .params("phone", mPhone.getText().toString())
@@ -40,11 +43,25 @@ public class SignUpDelegate extends LatteDelegate {
             .success(new ISuccess() {
                 @Override
                 public void onSuccess(String response) {
-
+                    LatteLogger.json("USER_PROFILE", response);
+                    SignHandler.onSignUp(response, null);
+                }
+            })
+            .error(new IError() {
+                @Override
+                public void onError(int code, String msg) {
+                    LatteLogger.json("USER_PROFILE", msg);
+                }
+            })
+            .failure(new IFailure() {
+                @Override
+                public void onFailure(String message) {
+                    LatteLogger.json("USER_PROFILE", message);
                 }
             })
             .build()
-            .post();
+            //.post();
+            .get();
         }
     }
 
@@ -103,5 +120,10 @@ public class SignUpDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
 
+    }
+
+    @OnClick(R2.id.tv_link_sign_in)
+    void onClickLink() {
+        start(new SigninDelegate(), SINGLETASK);
     }
 }

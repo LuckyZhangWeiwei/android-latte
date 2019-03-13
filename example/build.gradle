@@ -29,4 +29,6 @@ dependencies {
     annotationProcessor project(':latte_compiler')
     implementation project(':latte_annotations')
     implementation project(path: ':latte_core')
+    implementation 'com.facebook.stetho:stetho:1.4.2'
+    implementation 'com.facebook.stetho:stetho-okhttp3:1.4.2'
 }
