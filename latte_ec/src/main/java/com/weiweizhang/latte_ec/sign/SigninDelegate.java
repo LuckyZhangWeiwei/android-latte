@@ -1,5 +1,6 @@
 package com.weiweizhang.latte_ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,6 +9,9 @@ import android.util.Patterns;
 import android.view.View;
 
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
+import com.weiweizhang.latte_core.net.RestClient;
+import com.weiweizhang.latte_core.net.callback.ISuccess;
+import com.weiweizhang.latte_core.util.log.LatteLogger;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 
@@ -20,6 +24,16 @@ public class SigninDelegate extends LatteDelegate {
     TextInputEditText mEmail = null;
     @BindView(R2.id.edit_sign_in_password)
     TextInputEditText mPassword = null;
+
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
 
     private boolean checkForm() {
         final String email = mEmail.getText().toString();
@@ -47,7 +61,19 @@ public class SigninDelegate extends LatteDelegate {
     @OnClick(R2.id.btn_sign_in)
     void onClickSignIn() {
         if(checkForm()) {
-
+            RestClient.builder()
+                    .url("http://10.0.2.2:8055/user_profile.json")
+                    .params("email", mEmail.getText().toString())
+                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .build()
+                    .get();
         }
     }
 

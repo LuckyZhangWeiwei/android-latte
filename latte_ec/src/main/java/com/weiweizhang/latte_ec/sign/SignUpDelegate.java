@@ -1,5 +1,7 @@
 package com.weiweizhang.latte_ec.sign;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -31,6 +33,16 @@ public class SignUpDelegate extends LatteDelegate {
     @BindView(R2.id.edit_sign_up_re_password)
     TextInputEditText mRePassword = null;
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if (activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
+
     @OnClick(R2.id.btn_sign_up)
     void onClickSignUp() {
         if(checkForm()) {
@@ -44,7 +56,7 @@ public class SignUpDelegate extends LatteDelegate {
                 @Override
                 public void onSuccess(String response) {
                     LatteLogger.json("USER_PROFILE", response);
-                    SignHandler.onSignUp(response, null);
+                    SignHandler.onSignUp(response, mISignListener);
                 }
             })
             .error(new IError() {
