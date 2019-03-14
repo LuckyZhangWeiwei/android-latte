@@ -11,6 +11,7 @@ import com.weiweizhang.latte_core.ui.launcher.ILauncherListener;
 import com.weiweizhang.latte_core.ui.launcher.OnLauncherFinishTag;
 import com.weiweizhang.latte_ec.launcher.LauncherDelegate;
 import com.weiweizhang.latte_ec.launcher.LauncherScrollDelegate;
+import com.weiweizhang.latte_ec.main.EcBottomDelegate;
 import com.weiweizhang.latte_ec.sign.ISignListener;
 import com.weiweizhang.latte_ec.sign.SignUpDelegate;
 import com.weiweizhang.latte_ec.sign.SigninDelegate;
@@ -32,10 +33,11 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     @Override
     public LatteDelegate setRootDelegate() {
 //        return new ExampleDelegate();
-        return new LauncherDelegate();
+//        return new LauncherDelegate();
 //        return new LauncherScrollDelegate();
 //        return new SignUpDelegate();
 //        return new SigninDelegate();
+        return new EcBottomDelegate();
     }
 
     @Override
@@ -53,8 +55,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         switch (tag) {
             case SIGNED:
                 Toast.makeText(this, "启动结束，用户登录了", Toast.LENGTH_LONG).show();
-//                getSupportDelegate().startWithPop(new EcBottomDelegate());
-                getSupportDelegate().startWithPop(new ExampleDelegate());
+                getSupportDelegate().startWithPop(new EcBottomDelegate());
                 break;
             case NOT_SIGNED:
                 Toast.makeText(this, "启动结束，用户没登录", Toast.LENGTH_LONG).show();
@@ -64,4 +65,6 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 break;
         }
     }
+
+
 }
