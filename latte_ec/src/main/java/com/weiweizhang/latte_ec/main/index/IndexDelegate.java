@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.weiweizhang.latte_core.delegates.bottom.BottomItemDelegate;
+import com.weiweizhang.latte_core.ui.refresh.RefreshHandler;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 
@@ -27,6 +28,24 @@ public class IndexDelegate extends BottomItemDelegate {
     IconTextView mIconScan = null;
     @BindView(R2.id.et_search_view)
     AppCompatEditText mSearchView = null;
+
+    private RefreshHandler mRefreshHandler = null;
+
+    private void initRefreshLayout() {
+        mRefreshLayout.setColorSchemeResources(
+                android.R.color.holo_blue_bright,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light
+        );
+        mRefreshLayout.setProgressViewOffset(true, 120, 300);
+    }
+
+    @Override
+    public void onLazyInitView(@Nullable Bundle savedInstanceState) {
+        super.onLazyInitView(savedInstanceState);
+        initRefreshLayout();
+    }
+
     @Override
     public Object setLayout() {
         return R.layout.delegate_index;
@@ -34,6 +53,6 @@ public class IndexDelegate extends BottomItemDelegate {
 
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, @NonNull View rootView) {
-
+        mRefreshHandler = new RefreshHandler(mRefreshLayout);
     }
 }
