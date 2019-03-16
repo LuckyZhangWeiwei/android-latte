@@ -33,11 +33,11 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
     @Override
     public LatteDelegate setRootDelegate() {
 //        return new ExampleDelegate();
-//        return new LauncherDelegate();
+        return new LauncherDelegate();
 //        return new LauncherScrollDelegate();
 //        return new SignUpDelegate();
 //        return new SigninDelegate();
-        return new EcBottomDelegate();
+//        return new EcBottomDelegate();
     }
 
     @Override
@@ -65,6 +65,4 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
                 break;
         }
     }
-
-
 }
