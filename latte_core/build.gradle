@@ -4,8 +4,6 @@ apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 28
 
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 28
@@ -68,4 +66,14 @@ dependencies {
     //数据库依赖
     compile 'org.greenrobot:greendao-generator:3.2.2'
     compile 'org.greenrobot:greendao:3.2.2'
+    //RecyclerView依赖
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
+    //RecyclerView 分割线
+    compile 'com.choices.divider:RecyclerView_Divider:+'
+    //图片处理
+//    compile 'com.github.bumptech.glide:glide:4.0.0-RC0'
+//    compile 'com.github.bumptech.glide:okhttp3-integration:4.0.0-RC0@aar'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.0.0-RC0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 }

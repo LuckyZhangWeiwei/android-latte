@@ -20,7 +20,7 @@ public class ExampleApp extends Application {
                 .withLoaderDelayed(1000)
                 //.withApiHost("https://cnodejs.org/api/v1/")
                 .withApiHost("http://10.0.2.2:8055/")
-                .withInterceptor(new DebugInterceptor("index", R.raw.test))
+                .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);
