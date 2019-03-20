@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.widget.Toast;
 
 import com.weiweizhang.latte_core.activites.ProxyActivity;
+import com.weiweizhang.latte_core.app.Latte;
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
 import com.weiweizhang.latte_core.ui.launcher.ILauncherListener;
 import com.weiweizhang.latte_core.ui.launcher.OnLauncherFinishTag;
@@ -15,6 +16,8 @@ import com.weiweizhang.latte_ec.main.EcBottomDelegate;
 import com.weiweizhang.latte_ec.sign.ISignListener;
 import com.weiweizhang.latte_ec.sign.SignUpDelegate;
 import com.weiweizhang.latte_ec.sign.SigninDelegate;
+
+import qiu.niorgai.StatusBarCompat;
 
 import static com.weiweizhang.latte_core.ui.launcher.OnLauncherFinishTag.NOT_SIGNED;
 import static com.weiweizhang.latte_core.ui.launcher.OnLauncherFinishTag.SIGNED;
@@ -28,6 +31,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
         if(actionBar != null) {
             actionBar.hide();
         }
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override

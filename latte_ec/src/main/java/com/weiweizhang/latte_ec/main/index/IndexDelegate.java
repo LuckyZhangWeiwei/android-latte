@@ -17,6 +17,7 @@ import com.weiweizhang.latte_core.app.Latte;
 import com.weiweizhang.latte_core.delegates.bottom.BottomItemDelegate;
 import com.weiweizhang.latte_core.net.RestClient;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
+import com.weiweizhang.latte_core.ui.recycler.BaseDecoration;
 import com.weiweizhang.latte_core.ui.recycler.MultipleFields;
 import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
 import com.weiweizhang.latte_core.ui.refresh.RefreshHandler;
@@ -72,8 +73,8 @@ public class IndexDelegate extends BottomItemDelegate {
     private void initRecyclerView() {
         final GridLayoutManager manager = new GridLayoutManager(getContext(), 4);
         mRecyclerView.setLayoutManager(manager);
-//        mRecyclerView.addItemDecoration
-//                (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
+        mRecyclerView.addItemDecoration
+                (BaseDecoration.create(ContextCompat.getColor(getContext(), R.color.app_background), 5));
 //        final EcBottomDelegate ecBottomDelegate = getParentDelegate();
 //        mRecyclerView.addOnItemTouchListener(IndexItemClickListener.create(ecBottomDelegate));
     }

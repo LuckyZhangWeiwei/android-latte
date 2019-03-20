@@ -70,11 +70,12 @@ public class RefreshHandler implements SwipeRefreshLayout.OnRefreshListener, Bas
 
     @Override
     public void onRefresh() {
-
+        refresh();
     }
 
     @Override
     public void onLoadMoreRequested() {
-
+        Toast.makeText(Latte.getApplicationContext(), "load more", Toast.LENGTH_SHORT).show();
+        mAdapter.loadMoreEnd(true);
     }
 }
