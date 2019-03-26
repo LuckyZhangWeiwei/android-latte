@@ -1,15 +1,14 @@
 package com.weiweizhang.fastec.example;
 
 import android.app.Application;
-import android.widget.Toast;
 
 import com.facebook.stetho.Stetho;
 import com.weiweizhang.fastec.R;
 import com.weiweizhang.latte_core.app.Latte;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
+import com.weiweizhang.fastec.example.event.TestEvent;
 import com.weiweizhang.latte_core.net.interceptors.DebugInterceptor;
 import com.weiweizhang.latte_ec.database.DatabaseManager;
-import com.weiweizhang.latte_ec.sign.ISignListener;
 
 public class ExampleApp extends Application {
     @Override
@@ -21,6 +20,8 @@ public class ExampleApp extends Application {
                 //.withApiHost("https://cnodejs.org/api/v1/")
                 .withApiHost("http://10.0.2.2:8055/")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
+                .withWebEvent("test", new TestEvent())
+                .withJavascriptInterface("latte")
                 .configure();
         initStetho();
         DatabaseManager.getInstance().init(this);
