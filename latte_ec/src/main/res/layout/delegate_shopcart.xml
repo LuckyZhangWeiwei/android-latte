@@ -52,10 +52,14 @@
         android:layout_weight="8"  />
 
     <android.support.v7.widget.ViewStubCompat
+        android:id="@+id/stub_no_item"
         android:background="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="8"
+        android:minHeight="50dp"
+        android:layout="@layout/stub_shop_cart_no_item"
+        android:orientation= "horizontal"
         />
 
     <android.support.v7.widget.LinearLayoutCompat

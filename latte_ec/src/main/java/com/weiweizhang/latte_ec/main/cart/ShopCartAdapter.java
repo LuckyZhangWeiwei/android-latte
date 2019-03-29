@@ -5,12 +5,15 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.joanzapata.iconify.widget.IconTextView;
 import com.weiweizhang.latte_core.app.Latte;
+import com.weiweizhang.latte_core.net.RestClient;
+import com.weiweizhang.latte_core.net.callback.ISuccess;
 import com.weiweizhang.latte_core.ui.recycler.MultipleFields;
 import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
 import com.weiweizhang.latte_core.ui.recycler.MultipleRecyclerAdapter;
@@ -19,9 +22,13 @@ import com.weiweizhang.latte_ec.R;
 
 import java.util.List;
 
-import butterknife.OnClick;
 
 public class ShopCartAdapter extends MultipleRecyclerAdapter {
+
+    private ICartItemListener mCartItemListener = null;
+
+    private double mTotalPrice = 0.00;
+
     private static final RequestOptions OPTIONS = new RequestOptions()
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .centerCrop()
@@ -29,8 +36,23 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
+        //初始化总价
+        for (MultipleItemEntity entity : data) {
+            final double price = entity.getField(ShopCartItemFields.PRICE);
+            final int count = entity.getField(ShopCartItemFields.COUNT);
+            final double total = price * count;
+            mTotalPrice = mTotalPrice + total;
+        }
         //添加购物车item布局
         addItemType(ShopCartItemType.SHOP_CART_ITEM, R.layout.item_shop_cart);
+    }
+
+    public void setCartItemListener(ICartItemListener listener) {
+        this.mCartItemListener = listener;
+    }
+
+    public double getTotalPrice() {
+        return mTotalPrice;
     }
 
     @Override
@@ -88,6 +110,63 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         }
                     }
                 });
+                //加减事件
+                iconMinus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        if(Integer.parseInt(tvCount.getText().toString()) > 1) {
+                            RestClient
+                                    .builder()
+                                    .url("shop_cart_count.json")
+                                    .loader(mContext)
+                                    .params("count", currentCount)
+                                    .success(new ISuccess() {
+                                        @Override
+                                        public void onSuccess(String response) {
+                                            int countNum = Integer.parseInt(tvCount.getText().toString());
+                                            countNum--;
+                                            tvCount.setText(String.valueOf(countNum));
+
+                                            if (mCartItemListener != null) {
+                                                mTotalPrice = mTotalPrice - price;
+                                                final double itemTotal = countNum * price;
+                                                mCartItemListener.onItemClick(itemTotal);
+                                            }
+                                        }
+                                    })
+                                    .build()
+                                    .get();
+                        }
+                    }
+                });
+
+                iconPlus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        final int currentCount = entity.getField(ShopCartItemFields.COUNT);
+                        RestClient.builder()
+                                .url("add_shop_cart_count.json")
+                                .loader(mContext)
+                                .params("count", currentCount)
+                                .success(new ISuccess() {
+                                    @Override
+                                    public void onSuccess(String response) {
+                                        int countNum = Integer.parseInt(tvCount.getText().toString());
+                                        countNum++;
+                                        tvCount.setText(String.valueOf(countNum));
+                                        if (mCartItemListener != null) {
+                                            mTotalPrice = mTotalPrice + price;
+                                            final double itemTotal = countNum * price;
+                                            mCartItemListener.onItemClick(itemTotal);
+                                        }
+                                    }
+                                })
+                                .build()
+                                .get();
+                    }
+                });
+
                 break;
         }
     }
