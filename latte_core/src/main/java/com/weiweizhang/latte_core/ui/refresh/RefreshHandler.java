@@ -1,6 +1,5 @@
 package com.weiweizhang.latte_core.ui.refresh;
 
-import android.print.PrinterId;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;

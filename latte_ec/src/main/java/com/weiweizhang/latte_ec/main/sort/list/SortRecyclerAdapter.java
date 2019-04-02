@@ -17,6 +17,8 @@ import com.weiweizhang.latte_ec.main.sort.content.ContentDelegate;
 
 import java.util.List;
 
+import me.yokeyword.fragmentation.SupportHelper;
+
 public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     private final SortDelegate DELEGATE;
     private int mPrePosition = 0;
@@ -77,9 +79,9 @@ public class SortRecyclerAdapter extends MultipleRecyclerAdapter {
     }
 
     private void switchContent(ContentDelegate delegate) {
-        final LatteDelegate contentDelegate = DELEGATE.findChildFragment(ContentDelegate.class);
+        final LatteDelegate contentDelegate = SupportHelper.findFragment(DELEGATE.getChildFragmentManager(), ContentDelegate.class);
         if(contentDelegate != null) {
-            contentDelegate.replaceFragment(delegate, true);
+            contentDelegate.getSupportDelegate().replaceFragment(delegate, true);
         }
     }
 }

@@ -10,22 +10,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
 import com.joanzapata.iconify.widget.IconTextView;
-import com.weiweizhang.latte_core.app.Latte;
 import com.weiweizhang.latte_core.delegates.bottom.BottomItemDelegate;
-import com.weiweizhang.latte_core.net.RestClient;
-import com.weiweizhang.latte_core.net.callback.ISuccess;
 import com.weiweizhang.latte_core.ui.recycler.BaseDecoration;
-import com.weiweizhang.latte_core.ui.recycler.MultipleFields;
-import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
 import com.weiweizhang.latte_core.ui.refresh.RefreshHandler;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 import com.weiweizhang.latte_ec.main.EcBottomDelegate;
-
-import java.util.ArrayList;
 
 import butterknife.BindView;
 

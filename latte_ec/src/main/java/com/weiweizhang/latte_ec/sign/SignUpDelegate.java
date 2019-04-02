@@ -136,6 +136,6 @@ public class SignUpDelegate extends LatteDelegate {
 
     @OnClick(R2.id.tv_link_sign_in)
     void onClickLink() {
-        start(new SigninDelegate(), SINGLETASK);
+        getSupportDelegate().start(new SigninDelegate(), SINGLETASK);
     }
 }

@@ -70,7 +70,7 @@ public class LauncherDelegate extends LatteDelegate implements ITimerListener {
 
     private void checkIsShowScroll() {
         if(!LattePreference.getAppFlag(ScrollLauncherTag.HAS_FIRST_LAUNCHER_APP.name())) {
-            start(new LauncherScrollDelegate(), SINGLETASK);
+            getSupportDelegate().start(new LauncherScrollDelegate(), SINGLETASK);
         } else {
             //检查用户是否登录APP
             AccountManager.checkAccount(new IUserChecker() {

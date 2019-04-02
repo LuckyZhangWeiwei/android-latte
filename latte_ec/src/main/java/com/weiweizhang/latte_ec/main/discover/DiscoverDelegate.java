@@ -39,7 +39,7 @@ public class DiscoverDelegate extends BottomItemDelegate {
 
             }
         });
-        loadRootFragment(R.id.web_discovery_container, delegate);
+        getSupportDelegate().loadRootFragment(R.id.web_discovery_container, delegate);
     }
 
     @Override
