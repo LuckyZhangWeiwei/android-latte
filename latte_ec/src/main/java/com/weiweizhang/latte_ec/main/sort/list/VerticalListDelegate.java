@@ -10,7 +10,7 @@ import android.view.View;
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
 import com.weiweizhang.latte_core.net.RestClient;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
-import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
+import com.weiweizhang.latte_ui.recycler.MultipleItemEntity;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 import com.weiweizhang.latte_ec.main.sort.SortDelegate;

@@ -5,7 +5,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -14,10 +13,10 @@ import com.joanzapata.iconify.widget.IconTextView;
 import com.weiweizhang.latte_core.app.Latte;
 import com.weiweizhang.latte_core.net.RestClient;
 import com.weiweizhang.latte_core.net.callback.ISuccess;
-import com.weiweizhang.latte_core.ui.recycler.MultipleFields;
-import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
-import com.weiweizhang.latte_core.ui.recycler.MultipleRecyclerAdapter;
-import com.weiweizhang.latte_core.ui.recycler.MultipleViewHolder;
+import com.weiweizhang.latte_ui.recycler.MultipleFields;
+import com.weiweizhang.latte_ui.recycler.MultipleItemEntity;
+import com.weiweizhang.latte_ui.recycler.MultipleRecyclerAdapter;
+import com.weiweizhang.latte_ui.recycler.MultipleViewHolder;
 import com.weiweizhang.latte_ec.R;
 
 import java.util.List;

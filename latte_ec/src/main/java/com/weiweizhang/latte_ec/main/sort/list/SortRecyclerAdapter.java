@@ -6,11 +6,11 @@ import android.support.v7.widget.AppCompatTextView;
 import android.view.View;
 
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
-import com.weiweizhang.latte_core.ui.recycler.ItemType;
-import com.weiweizhang.latte_core.ui.recycler.MultipleFields;
-import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
-import com.weiweizhang.latte_core.ui.recycler.MultipleRecyclerAdapter;
-import com.weiweizhang.latte_core.ui.recycler.MultipleViewHolder;
+import com.weiweizhang.latte_ui.recycler.ItemType;
+import com.weiweizhang.latte_ui.recycler.MultipleFields;
+import com.weiweizhang.latte_ui.recycler.MultipleItemEntity;
+import com.weiweizhang.latte_ui.recycler.MultipleRecyclerAdapter;
+import com.weiweizhang.latte_ui.recycler.MultipleViewHolder;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.main.sort.SortDelegate;
 import com.weiweizhang.latte_ec.main.sort.content.ContentDelegate;

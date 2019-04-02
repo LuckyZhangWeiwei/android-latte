@@ -25,10 +25,10 @@ android {
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation project(':latte_ec')
+    compile project(':latte_ec')
+    compile project(':latte_ui')
+    provided project(':latte_annotations')
     annotationProcessor project(':latte_compiler')
-    implementation project(':latte_annotations')
-    implementation project(path: ':latte_core')
     implementation 'com.facebook.stetho:stetho:1.4.2'
     implementation 'com.facebook.stetho:stetho-okhttp3:1.4.2'
 }

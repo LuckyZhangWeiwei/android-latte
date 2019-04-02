@@ -13,8 +13,8 @@ import android.view.View;
 
 import com.joanzapata.iconify.widget.IconTextView;
 import com.weiweizhang.latte_core.delegates.bottom.BottomItemDelegate;
-import com.weiweizhang.latte_core.ui.recycler.BaseDecoration;
-import com.weiweizhang.latte_core.ui.refresh.RefreshHandler;
+import com.weiweizhang.latte_ui.recycler.BaseDecoration;
+import com.weiweizhang.latte_ui.refresh.RefreshHandler;
 import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 import com.weiweizhang.latte_ec.main.EcBottomDelegate;

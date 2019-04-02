@@ -3,9 +3,9 @@ package com.weiweizhang.latte_ec.main.cart;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
-import com.weiweizhang.latte_core.ui.recycler.DataConverter;
-import com.weiweizhang.latte_core.ui.recycler.MultipleFields;
-import com.weiweizhang.latte_core.ui.recycler.MultipleItemEntity;
+import com.weiweizhang.latte_ui.recycler.DataConverter;
+import com.weiweizhang.latte_ui.recycler.MultipleFields;
+import com.weiweizhang.latte_ui.recycler.MultipleItemEntity;
 
 import java.util.ArrayList;
 

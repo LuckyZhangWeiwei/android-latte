@@ -11,10 +11,10 @@ import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.weiweizhang.latte_core.app.AccountManager;
 import com.weiweizhang.latte_core.app.IUserChecker;
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
-import com.weiweizhang.latte_core.ui.launcher.ILauncherListener;
-import com.weiweizhang.latte_core.ui.launcher.LauncherHolderCreator;
-import com.weiweizhang.latte_core.ui.launcher.OnLauncherFinishTag;
-import com.weiweizhang.latte_core.ui.launcher.ScrollLauncherTag;
+import com.weiweizhang.latte_ui.launcher.ILauncherListener;
+import com.weiweizhang.latte_ui.launcher.LauncherHolderCreator;
+import com.weiweizhang.latte_ui.launcher.OnLauncherFinishTag;
+import com.weiweizhang.latte_ui.launcher.ScrollLauncherTag;
 import com.weiweizhang.latte_core.util.storage.LattePreference;
 import com.weiweizhang.latte_ec.R;
 

@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.weiweizhang.latte_core.ui.recycler.RgbValue;
+import com.weiweizhang.latte_ui.recycler.RgbValue;
 import com.weiweizhang.latte_ec.R;
 
 public class TranslucentBehavior extends CoordinatorLayout.Behavior<Toolbar> {
