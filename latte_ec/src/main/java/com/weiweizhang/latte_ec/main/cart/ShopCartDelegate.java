@@ -23,8 +23,6 @@ import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
