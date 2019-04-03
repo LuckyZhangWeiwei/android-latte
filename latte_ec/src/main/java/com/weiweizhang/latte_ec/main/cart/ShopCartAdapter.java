@@ -35,7 +35,6 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     protected ShopCartAdapter(List<MultipleItemEntity> data) {
         super(data);
-        //初始化总价
         for (MultipleItemEntity entity : data) {
             final double price = entity.getField(ShopCartItemFields.PRICE);
             final int count = entity.getField(ShopCartItemFields.COUNT);
@@ -116,26 +115,26 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
                         final int currentCount = entity.getField(ShopCartItemFields.COUNT);
                         if(Integer.parseInt(tvCount.getText().toString()) > 1) {
                             RestClient
-                                    .builder()
-                                    .url("shop_cart_count.json")
-                                    .loader(mContext)
-                                    .params("count", currentCount)
-                                    .success(new ISuccess() {
-                                        @Override
-                                        public void onSuccess(String response) {
-                                            int countNum = Integer.parseInt(tvCount.getText().toString());
-                                            countNum--;
-                                            tvCount.setText(String.valueOf(countNum));
+                            .builder()
+                            .url("shop_cart_count.json")
+                            .loader(mContext)
+                            .params("count", currentCount)
+                            .success(new ISuccess() {
+                                @Override
+                                public void onSuccess(String response) {
+                                    int countNum = Integer.parseInt(tvCount.getText().toString());
+                                    countNum--;
+                                    tvCount.setText(String.valueOf(countNum));
 
-                                            if (mCartItemListener != null) {
-                                                mTotalPrice = mTotalPrice - price;
-                                                final double itemTotal = countNum * price;
-                                                mCartItemListener.onItemClick(itemTotal);
-                                            }
-                                        }
-                                    })
-                                    .build()
-                                    .get();
+                                    if (mCartItemListener != null) {
+                                        mTotalPrice = mTotalPrice - price;
+                                        final double itemTotal = countNum * price;
+                                        mCartItemListener.onItemClick(itemTotal);
+                                    }
+                                }
+                            })
+                            .build()
+                            .get();
                         }
                     }
                 });
@@ -174,5 +173,17 @@ public class ShopCartAdapter extends MultipleRecyclerAdapter {
 
     public void setIsSelectedAll(boolean isSelectedAll) {
         mIsSelectedAll = isSelectedAll;
+    }
+
+    public void flashShopCart(List<MultipleItemEntity> data) {
+        mTotalPrice = 0.00;
+        if(data.size()>0) {
+            for (MultipleItemEntity entity : data) {
+                final double price = entity.getField(ShopCartItemFields.PRICE);
+                final int count = entity.getField(ShopCartItemFields.COUNT);
+                final double total = price * count;
+                mTotalPrice = mTotalPrice + total;
+            }
+        }
     }
 }

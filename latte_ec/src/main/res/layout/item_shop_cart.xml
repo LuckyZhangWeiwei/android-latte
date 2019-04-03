@@ -15,6 +15,7 @@
         android:layout_marginLeft="10dp"
         android:gravity="center"
         android:text="{fa-check-circle}"
+        android:textSize="18sp"
         android:textColor="@android:color/darker_gray"
         tools:ignore="HardcodedText,RtlHardcoded" />
 

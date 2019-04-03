@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_top_shop_cart_clear"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:text="清空"
@@ -24,7 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent" />
             <android.support.v7.widget.AppCompatTextView
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:text="购物车"
@@ -35,7 +35,7 @@
 
             <android.support.v7.widget.AppCompatTextView
                 android:id="@+id/tv_top_shop_cart_remove_selected"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:textColor="@android:color/white"
                 android:gravity="center"
                 android:text="删除"

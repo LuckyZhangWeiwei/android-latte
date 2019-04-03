@@ -23,6 +23,8 @@ import com.weiweizhang.latte_ec.R;
 import com.weiweizhang.latte_ec.R2;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
@@ -81,7 +83,7 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
         mAdapter.setCartItemListener(new ICartItemListener() {
             @Override
             public void onItemClick(double itemTotal) {
-                final double price = mAdapter.getTotalPrice();
+                double price = mAdapter.getTotalPrice();
                 mTvTotalPrice.setText(String.valueOf(price));
             }
         });
@@ -117,22 +119,28 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
             }
         }
 
-        for (MultipleItemEntity entity :deleteEntities) {
-            int removePosition;
-            final int entityPosition = entity.getField(ShopCartItemFields.POSITION);
-            if (entityPosition > mCurrentCount - 1) {
-                removePosition = entityPosition - (mTotalCount - mCurrentCount);
-            } else {
-                removePosition = entityPosition;
-            }
-            if (removePosition <= mAdapter.getItemCount()) {
-                mAdapter.remove(removePosition);
-                mCurrentCount = mAdapter.getItemCount();
-                //更新数据
-                mAdapter.notifyItemRangeChanged(removePosition, mAdapter.getItemCount());
+        for(MultipleItemEntity entity : deleteEntities) {
+            int delPosition = getToDelPosition(entity);
+            mAdapter.remove(delPosition);
+            mAdapter.notifyItemRangeChanged(delPosition, mAdapter.getItemCount());
+        }
+        mAdapter.flashShopCart(mAdapter.getData());
+        mTotalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
+        checkItemCount();
+    }
+
+    private int getToDelPosition(MultipleItemEntity entity) {
+        int delPosition = -1;
+        for(MultipleItemEntity cartItem : mAdapter.getData()) {
+            delPosition ++;
+            final String cartItemName = cartItem.getField(ShopCartItemFields.TITLE);
+            final String delItemName = entity.getField(ShopCartItemFields.TITLE);
+            if(cartItemName.equals(delItemName)) {
+                return delPosition;
             }
         }
-        checkItemCount();
+        return delPosition;
     }
 
     private void checkItemCount() {
@@ -157,6 +165,9 @@ public class ShopCartDelegate extends BottomItemDelegate implements ISuccess {
     void onClickClear() {
         mAdapter.getData().clear();
         mAdapter.notifyDataSetChanged();
+        mAdapter.flashShopCart(mAdapter.getData());
+        mTotalPrice = mAdapter.getTotalPrice();
+        mTvTotalPrice.setText(String.valueOf(mTotalPrice));
         checkItemCount();
     }
 
