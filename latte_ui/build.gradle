@@ -111,4 +111,6 @@ dependencies {
     //Google AutoValue
     provided 'com.google.auto.value:auto-value:1.4.1'
     annotationProcessor "com.google.auto.value:auto-value:1.4.1"
+
+
 }

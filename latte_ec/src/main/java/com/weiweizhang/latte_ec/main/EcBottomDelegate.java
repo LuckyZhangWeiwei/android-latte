@@ -8,7 +8,7 @@ import com.weiweizhang.latte_core.delegates.bottom.BottomTabBean;
 import com.weiweizhang.latte_core.delegates.bottom.ItemBuilder;
 import com.weiweizhang.latte_ec.main.discover.DiscoverDelegate;
 import com.weiweizhang.latte_ec.main.index.IndexDelegate;
-import com.weiweizhang.latte_ec.main.index.PersonalDelegate;
+import com.weiweizhang.latte_ec.main.personal.PersonalDelegate;
 import com.weiweizhang.latte_ec.main.cart.ShopCartDelegate;
 import com.weiweizhang.latte_ec.main.sort.SortDelegate;
 

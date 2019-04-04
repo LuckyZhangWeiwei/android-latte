@@ -3,6 +3,7 @@ package com.weiweizhang.latte_core.app;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.blankj.utilcode.util.Utils;
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 import com.weiweizhang.latte_core.delegates.web.event.Event;
@@ -43,6 +44,7 @@ public class Configurator {
     public final void configure() {
         initIcons();
         LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
+        Utils.init(Latte.getApplicationContext());
     }
 
     public final Configurator withApiHost(String host) {

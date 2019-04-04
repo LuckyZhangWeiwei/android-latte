@@ -62,7 +62,7 @@ public class SigninDelegate extends LatteDelegate {
     void onClickSignIn() {
         if(checkForm()) {
             RestClient.builder()
-                    .url("http://10.0.2.2:8055/user_profile.json")
+                    .url("user_profile.json")
                     .params("email", mEmail.getText().toString())
                     .params("password", mPassword.getText().toString())
                     .success(new ISuccess() {
@@ -84,7 +84,7 @@ public class SigninDelegate extends LatteDelegate {
 
     @OnClick(R2.id.tv_link_sign_up)
     void onClickLink() {
-        getSupportDelegate().start(new SignUpDelegate(), SINGLETASK);
+        getSupportDelegate().start(new SignUpDelegate(), SINGLETOP);
     }
 
     @Override
