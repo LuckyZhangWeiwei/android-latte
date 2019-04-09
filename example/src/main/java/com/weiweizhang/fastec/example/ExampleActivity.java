@@ -14,6 +14,7 @@ import com.weiweizhang.latte_ec.main.EcBottomDelegate;
 import com.weiweizhang.latte_ec.sign.ISignListener;
 import com.weiweizhang.latte_ec.sign.SigninDelegate;
 
+import cn.jpush.android.api.JPushInterface;
 import me.yokeyword.fragmentation.ISupportFragment;
 import qiu.niorgai.StatusBarCompat;
 
@@ -60,5 +61,17 @@ public class ExampleActivity extends ProxyActivity implements
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JPushInterface.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        JPushInterface.onResume(this);
     }
 }
