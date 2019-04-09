@@ -13,6 +13,7 @@ import com.weiweizhang.latte_ec.R2;
 import com.weiweizhang.latte_ec.main.personal.list.ListAdapter;
 import com.weiweizhang.latte_ec.main.personal.list.ListBean;
 import com.weiweizhang.latte_ec.main.personal.list.ListItemType;
+import com.weiweizhang.latte_ec.main.personal.settings.NameDelegate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +42,7 @@ public class UserProfileDelegate extends LatteDelegate {
                 .setItemType(ListItemType.ITEM_NORMAL)
                 .setId(2)
                 .setText("姓名")
-//                .setDelegate(new NameDelegate())
+                .setDelegate(new NameDelegate())
                 .setValue("未设置姓名")
                 .build();
 

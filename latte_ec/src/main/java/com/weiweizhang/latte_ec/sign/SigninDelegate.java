@@ -84,7 +84,7 @@ public class SigninDelegate extends LatteDelegate {
 
     @OnClick(R2.id.tv_link_sign_up)
     void onClickLink() {
-        getSupportDelegate().start(new SignUpDelegate(), SINGLETOP);
+        getSupportDelegate().startWithPop(new SignUpDelegate());
     }
 
     @Override

@@ -36,6 +36,10 @@ public class ListBean implements MultiItemEntity {
         return mText;
     }
 
+    public void setText(String value) {
+         mText = value;
+    }
+
     public String getValue() {
         if (mValue == null) {
             return "";

@@ -79,7 +79,6 @@ public class PersonalDelegate extends BottomItemDelegate {
         final OrderListDelegate delegate = new OrderListDelegate();
         delegate.setArguments(mArgs);
         getParentDelegate().getSupportDelegate().start(delegate);
-//        getSupportDelegate().start(delegate);
     }
 
     @OnClick(R2.id.img_user_avatar)

@@ -14,6 +14,7 @@ import com.weiweizhang.latte_ec.main.EcBottomDelegate;
 import com.weiweizhang.latte_ec.sign.ISignListener;
 import com.weiweizhang.latte_ec.sign.SigninDelegate;
 
+import me.yokeyword.fragmentation.ISupportFragment;
 import qiu.niorgai.StatusBarCompat;
 
 public class ExampleActivity extends ProxyActivity implements

@@ -19,7 +19,7 @@ public class ExampleApp extends Application {
                 .withLoaderDelayed(1000)
                 //.withApiHost("https://cnodejs.org/api/v1/")
 //                .withApiHost("http://10.0.2.2:8055/")
-                .withApiHost("http://192.168.1.113:8055/")
+                .withApiHost("http://192.168.1.122:8055/")
                 .withInterceptor(new DebugInterceptor("test", R.raw.test))
                 .withWebEvent("test", new TestEvent())
                 .withJavascriptInterface("latte")
