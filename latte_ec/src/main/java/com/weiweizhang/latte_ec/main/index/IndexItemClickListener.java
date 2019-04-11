@@ -6,6 +6,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.SimpleClickListener;
 import com.weiweizhang.latte_core.delegates.LatteDelegate;
 import com.weiweizhang.latte_ec.detail.GoodsDetailDelegate;
+import com.weiweizhang.latte_ui.recycler.MultipleFields;
+import com.weiweizhang.latte_ui.recycler.MultipleItemEntity;
 
 public class IndexItemClickListener extends SimpleClickListener {
     private final LatteDelegate DELEGATE;
@@ -20,7 +22,9 @@ public class IndexItemClickListener extends SimpleClickListener {
 
     @Override
     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create();
+        final MultipleItemEntity entity = (MultipleItemEntity) adapter.getData().get(position);
+        final int goodsId = entity.getField(MultipleFields.ID);
+        final GoodsDetailDelegate delegate = GoodsDetailDelegate.create(goodsId);
         DELEGATE.getSupportDelegate().start(delegate);
     }
 
